@@ -16,7 +16,8 @@ async function putCardOnPage() {
     try {
         // Make sure there are still cards in the deck
         card = $(`<img src=${await deck.drawCard()} class="mt-5">`);
-    } catch(e) {
+    } 
+    catch(e) {
         // Otherwise don't let the user try to draw another card
         if (e instanceof TypeError) {
             removeButton()
