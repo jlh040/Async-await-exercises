@@ -11,8 +11,18 @@ $(async function () {
 $('button').click(putCardOnPage)
 
 async function putCardOnPage() {
-    // Make the card element
-    let card = $(`<img src=${await deck.drawCard()} class="mt-5">`);
+    let card;
+
+    try {
+        // Make sure there are still cards in the deck
+        card = $(`<img src=${await deck.drawCard()} class="mt-5">`);
+    } catch(e) {
+        // Otherwise don't let the user try to draw another card
+        if (e instanceof TypeError) {
+            removeButton()
+        }
+    }
+
     // Rotate and move the card
     rotateAndMoveCard(card);
 
@@ -39,6 +49,9 @@ function randomPixel() {
     return Math.floor(Math.random() * 50);
 };
 
+function removeButton() {
+    $('.button-container').html('')
+}
 
 
 
