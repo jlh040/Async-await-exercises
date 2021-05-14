@@ -1,7 +1,4 @@
 class Deck {
-    constructor() {
-        this.getDeckInfo()
-    }
     
     async getDeckInfo() {
         const resp = await axios.get('https://deckofcardsapi.com/api/deck/new/')
