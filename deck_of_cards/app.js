@@ -49,6 +49,7 @@ function randomPixel() {
     return Math.floor(Math.random() * 50);
 };
 
+// Remove the button from the screen
 function removeButton() {
     $('.button-container').html('')
 }
