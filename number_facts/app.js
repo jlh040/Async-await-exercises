@@ -1,7 +1,7 @@
 const baseURL = 'http://numbersapi.com'
 
 async function makeRequest() {
-    let resp = await axios.get(`${baseURL}/1..26?json`)
+    let resp = await axios.get(`${baseURL}/1?json`)
     return resp.data
 }
 
@@ -12,12 +12,16 @@ function createLi(fact) {
     </li>`)
 }
 
-async function putFactsOnPage(dataObj) {
-    let data = await dataObj;
+async function putFactsOnPage(numObj) {
+    let data = await numObj;
 
-    for (let num in data) {
-        $('.list-group').append(createLi(data[num]))
+    $('.list-group').append(createLi(data['text']))
+}
+
+function makeFourCalls() {
+    for (let i = 0; i < 4; i++) {
+        putFactsOnPage(makeRequest());
     }
 }
 
-putFactsOnPage(makeRequest())
+makeFourCalls();
